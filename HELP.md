@@ -23,7 +23,7 @@ CREATE TABLE students (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
-    age INT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    address VARCHAR(255),
+    phone VARCHAR(50)
 );
 
