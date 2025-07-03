@@ -27,3 +27,11 @@ CREATE TABLE students (
     phone VARCHAR(50)
 );
 
+docker run -d \
+  --name studentdb-mysql \
+  -e MYSQL_ROOT_PASSWORD=rootpassword \
+  -e MYSQL_DATABASE=studentdb \
+  -e MYSQL_USER=studentuser \
+  -e MYSQL_PASSWORD=studentpass \
+  -p 3306:3306 \
+  mysql:8.0
