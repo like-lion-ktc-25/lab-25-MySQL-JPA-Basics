@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Lab25MySqlJpaBasicsApplication {
+public class Lab22MySqlJpaBasicsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Lab25MySqlJpaBasicsApplication.class, args);
+		SpringApplication.run(Lab22MySqlJpaBasicsApplication.class, args);
 	}
 
 }

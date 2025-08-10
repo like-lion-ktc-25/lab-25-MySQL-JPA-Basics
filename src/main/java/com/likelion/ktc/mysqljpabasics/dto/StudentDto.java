@@ -1,12 +1,6 @@
-package com.likelion.ktc.mysqljpabasics.model;
+package com.likelion.ktc.mysqljpabasics.dto;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "students")
-public class Student {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class StudentDto {
     private Long id;
 
     private String name;
@@ -14,7 +8,6 @@ public class Student {
     private String address;
     private String phone;
 
-    // Getters and setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getName() { return name; }
@@ -25,4 +18,4 @@ public class Student {
     public void setAddress(String address) { this.address = address; }
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
-} 
+}

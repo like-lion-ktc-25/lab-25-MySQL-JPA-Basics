@@ -1,7 +1,9 @@
 package com.likelion.ktc.mysqljpabasics.controller;
 
-import com.likelion.ktc.mysqljpabasics.model.Student;
+import com.likelion.ktc.mysqljpabasics.dto.StudentDto;
+import com.likelion.ktc.mysqljpabasics.entity.Student;
 import com.likelion.ktc.mysqljpabasics.service.StudentService;
+import com.likelion.ktc.mysqljpabasics.service.StudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,29 +14,35 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/students")
 public class StudentController {
-    @Autowired
-    private StudentService studentService;
+
+    private final StudentService studentService;
+
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     @GetMapping
-    public List<Student> getAllStudents() {
+    public List<StudentDto> getAllStudents() {
         return studentService.getAllStudents();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Student> getStudentById(@PathVariable(name = "id") Long id) {
-        Optional<Student> student = studentService.getStudentById(id);
-        return student.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<StudentDto> getStudentById(@PathVariable(name = "id") Long id) {
+        return ResponseEntity.ok(studentService.getStudentById(id));
+
     }
 
     @PostMapping
-    public Student createStudent(@RequestBody Student student) {
+    public StudentDto createStudent(@RequestBody StudentDto student) {
         return studentService.createStudent(student);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Student> updateStudent(@PathVariable(name = "id") Long id, @RequestBody Student studentDetails) {
-        Student updated = studentService.updateStudent(id, studentDetails);
-        if (updated == null) return ResponseEntity.notFound().build();
+    public ResponseEntity<StudentDto> updateStudent(@PathVariable(name = "id") Long id,
+            @RequestBody StudentDto studentDetails) {
+        StudentDto updated = studentService.updateStudent(id, studentDetails);
+        if (updated == null)
+            return ResponseEntity.notFound().build();
         return ResponseEntity.ok(updated);
     }
 
@@ -43,4 +51,4 @@ public class StudentController {
         studentService.deleteStudent(id);
         return ResponseEntity.noContent().build();
     }
-} 
+}

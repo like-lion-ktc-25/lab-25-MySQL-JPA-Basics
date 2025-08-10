@@ -27,6 +27,18 @@ CREATE TABLE students (
     phone VARCHAR(50)
 );
 
+CREATE TABLE books (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255),
+    author VARCHAR(255)
+);
+
+CREATE TABLE audit_logs (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    action VARCHAR(255),
+    timestamp DATETIME
+);
+
 docker run -d \
   --name studentdb-mysql \
   -e MYSQL_ROOT_PASSWORD=rootpassword \
@@ -34,4 +46,5 @@ docker run -d \
   -e MYSQL_USER=studentuser \
   -e MYSQL_PASSWORD=studentpass \
   -p 3306:3306 \
+  -v mysql-data:/var/lib/mysql \
   mysql:8.0
